@@ -19,9 +19,11 @@ The converter outputs a song string for use ingame.
 
 ## Formatting the input file
 The input file is expected to follow a specific format.
+You can experiment with `test.txt` in the repository.
 
 ### Scale
 The first line of the input file should consist of an integer from 1-8 inclusive representing the scale to use.
+
 Number | Scale |
 --- | --- |
 1 | Pentatonic Major |
