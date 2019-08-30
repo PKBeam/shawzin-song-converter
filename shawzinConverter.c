@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
         int res = fscanf(fp, "%s %i/%i\n", note, &duration1, &duration2);
         if (res == EOF) {
             break;
-        } else if (res < 3) {
+        } else if (res < 2) {
             printf("Invalid line (line %i)\n", lineNo);
             return 1;
         }
