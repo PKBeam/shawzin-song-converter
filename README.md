@@ -2,20 +2,21 @@
 A song converter for the Shawzin in Warframe. 
 
 ## Usage
+The converter outputs a song string for use ingame.
 ### Windows
-Download the executable from the releases section (or compile it yourself).
+Download the executable from the [releases section](https://github.com/PKBeam/shawzin-song-converter/releases) (or compile it yourself).
 
-In a command prompt, type
+In a cmd prompt, navigate to the directory with the executable and type
 ```
 > shawzinConverter mySong.txt
 ```
+(If using PowerShell you will need to type `.\shawzinConverter mySong.txt` instead)
 ### macOS/Linux
 Download the source code and compile it.
 ```
 $ gcc shawzinConverter.c -o shawzinConverter
 $ ./shawzinConverter mySong.txt
 ```
-The converter outputs a song string for use ingame.
 
 ## Formatting the input file
 The input file is expected to follow a specific format.
