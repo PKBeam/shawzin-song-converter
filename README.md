@@ -20,7 +20,7 @@ $ ./shawzinConverter mySong.txt
 
 ## Formatting the input file
 The input file is expected to follow a specific format.
-You can experiment with `test.txt` in the repository.
+The `test.txt` file is provided in the repository as an example.
 
 ### Scale
 The first line of the input file should consist of an integer from 1-8 inclusive representing the scale to use.
@@ -38,7 +38,6 @@ Number | Scale |
 
 ### Tempo
 The second line should consist of a positive number. This is the tempo of the song in BPM (beats per minute).
-The default tempo used when recording a song ingame is 120 BPM.
 
 ---
 
@@ -59,7 +58,7 @@ Express the duration as a fraction of a beat, using either an integer or a fract
 For example, `1/4`, `2/3` and `1` are all valid inputs.
 
 ## Issues
-Not much testing has been done. There are probably still bugs with the converter.
+Not much testing has been done. There are probably many bugs with the converter.
 
 Currently the converter does not check the length of the song.
 The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
@@ -75,7 +74,10 @@ The song string format used by the game looks something like this:
 We can break it up into chunks to make it easier to analyse.  
 `1 BAA CAI EAQ JAY KAg MAo`
 
+### Scale
 The first character is a number from 1-8 representing the scale (much like the converter's input file format).
+
+---
 
 We then have sequences of three-character strings in the form `<pitch> <time>`.
 
@@ -102,9 +104,9 @@ A value difference of 16 represents one second, and so the entire 64-value range
 
 Put together, these two characters tell you when the note is played.
 
-For example, `BCf` represents the note with lowest pitch and no fret (equivalent ingame to pressing the "1" key without clicking).
+For example, `BCf` represents the note with lowest pitch and no fret (equivalent ingame to pressing the "1" key without clicking).  
 The time of the note is 8 seconds from the `C`, plus (`31/64 * 4`) seconds from the `f`, as `f` is `31` in base-64, and 64 characters represents 4 seconds.
 
 ## Miscellaneous notes
-The metronome for recording ingame is 120 BPM (or 2 beats per second).  
+The metronome for recording ingame operates at 120 BPM (or 2 beats per second).  
 The encoding system's limited precision for timing means that most tempos (e.g. 67 BPM) cannot be timed perfectly. (But they'll probably still sound good.)  
