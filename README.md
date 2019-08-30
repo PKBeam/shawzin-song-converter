@@ -63,3 +63,48 @@ Not much testing has been done. There are probably still bugs with the converter
 
 Currently the converter does not check the length of the song.
 The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
+The recording must also contain at least 6 notes.
+
+The converter does not support chords yet.
+
+## More on the Shawzin song string format...
+
+The song string format used by the game looks something like this:  
+`1BAACAIEAQJAYKAgMAo`
+
+We can break it up into chunks to make it easier to analyse.  
+`1 BAA CAI EAQ JAY KAg MAo`
+
+The first character is a number from 1-8 representing the scale (much like the converter's input file format).
+
+We then have sequences of three-character strings in the form `<pitch> <time>`.
+
+### Pitch
+
+The first character represents the pitch.
+
+Fret\Notes | 1 | 2 | 1+2 | 3 | 1+3 | 2+3 | 1+2+3
+--- | --- | --- | --- | --- | --- | --- | --- |
+**none** | B | C | D | E | F | G | H |
+**left** | J | K | L | M | N | O | P |
+**middle** | R | S | T | U | V | W | X |
+**right** | h | i | j | k | l | m | n |
+
+### Time
+
+The last two characters represent the time at which the notes occur.
+
+The former character is an uppercase alphebetic character representing a rough time offset for the note.  
+It starts at `A` (where the time is 0 seconds) and increments every 4 seconds.
+
+The latter character is a finer offset encoded in base-64, with 64 values ranging from `A-Z`, `a-z`, `0-9`, `+`, `/`.  
+A value difference of 16 represents one second, and so the entire 64-value range spans 4 seconds (filling in the gaps between the rough offsets).
+
+Put together, these two characters tell you when the note is played.
+
+For example, `BCf` represents the note with lowest pitch and no fret (equivalent ingame to pressing the "1" key without clicking).
+The time of the note is 8 seconds from the `C`, plus (`31/64 * 4`) seconds from the `f`, as `f` is `31` in base-64, and 64 characters represents 4 seconds.
+
+## Miscellaneous notes
+The metronome for recording ingame is 120 BPM (or 2 beats per second).  
+The encoding system's limited precision for timing means that most tempos (e.g. 67 BPM) cannot be timed perfectly.  
