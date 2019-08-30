@@ -66,7 +66,7 @@ The recording must also contain at least 6 notes.
 
 The converter does not support chords yet.
 
-## More on the Shawzin song string format...
+## More on the ingame song string format
 
 The song string format used by the game looks something like this:  
 `1BAACAIEAQJAYKAgMAo`
