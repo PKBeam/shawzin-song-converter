@@ -107,4 +107,4 @@ The time of the note is 8 seconds from the `C`, plus (`31/64 * 4`) seconds from 
 
 ## Miscellaneous notes
 The metronome for recording ingame is 120 BPM (or 2 beats per second).  
-The encoding system's limited precision for timing means that most tempos (e.g. 67 BPM) cannot be timed perfectly.  
+The encoding system's limited precision for timing means that most tempos (e.g. 67 BPM) cannot be timed perfectly. (But they'll probably still sound good.)  
