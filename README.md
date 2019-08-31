@@ -24,7 +24,7 @@ Use `-f` to format the output to be more human readable.
 ```
 ## Input
 The input file is expected to follow a specific format.
-Some test files are provided in the repository as an example.
+Some example files are provided in the repository (under the `Examples/` folder).
 
 ### Scale
 The first line of the input file should consist of an integer from 1-8 inclusive representing the scale to use.
