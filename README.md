@@ -17,10 +17,14 @@ Download the source code and compile it.
 $ gcc shawzinConverter.c -o shawzinConverter
 $ ./shawzinConverter mySong.txt
 ```
-
-## Formatting the input file
+### Formatting the output file
+Use `-f` to format the output to be more human readable.
+```
+> shawzinConverter mySong.txt -f
+```
+## Input
 The input file is expected to follow a specific format.
-The `test.txt` file is provided in the repository as an example.
+Some test files are provided in the repository as an example.
 
 ### Scale
 The first line of the input file should consist of an integer from 1-8 inclusive representing the scale to use.
@@ -41,16 +45,31 @@ The second line should consist of a positive number. This is the tempo of the so
 
 ---
 
-Each line after the second should be in the format `<note> <duration>`.
+Each line after the second should be in the format `<note> <note> ... <duration>`.  
 
-### Notes
+### Comments
+
+You can comment out a line with a `#` and it will be ignored by the converter (for lines after the second).
+```
+5
+120
+# This is my song
+A 1/2
+B 1/2
+C 1/2
+```
+
+### Notes and Chords
 
 For scales that contain the same note in different octaves, an input of a note by itself is interpreted as the lowest octave of that note in the scale.  
 Use `^` to raise the note by an octave.  
 For example, `F`, `F^` and `F^^` are all valid notes for the pentatonic major scale, where `F` represents the lowest octave in the scale.
 
-If a note has enharmonic equivalents, write it using a flat (b).  
-For example, write F# as `Gb`.
+You can specify chords, by adding more notes as such:  
+```
+D F# A 1/2
+C E G Bb 1/2
+```
 
 ### Duration
 
@@ -63,8 +82,6 @@ Not much testing has been done. There are probably many bugs with the converter.
 Currently the converter does not check the length of the song.
 The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
 The recording must also contain at least 6 notes.
-
-The converter does not support chords yet.
 
 ## More on the ingame song string format
 
@@ -110,3 +127,4 @@ The time of the note is 8 seconds from the `C`, plus (`31/64 * 4`) seconds from 
 ## Miscellaneous notes
 The metronome for recording ingame operates at 120 BPM (or 2 beats per second).  
 The encoding system's limited precision for timing means that most tempos (e.g. 67 BPM) cannot be timed perfectly. (But they'll probably still sound good.)  
+Any two or more notes can be specified to play at the same time. This is not very easy to do using ingame recording, but the converter makes it quite simple.
