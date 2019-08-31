@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    int formatted = (argc > 2) ? !strcmp(argv[2], "-f") : 1;
+    int formatted = (argc > 2) ? !strcmp(argv[2], "-f") : 0;
     int lineNo = 0;
     char out[MAX_STRING] = {'\0'};
     int scale;
