@@ -111,7 +111,7 @@ Fret\Notes | 1 | 2 | 1+2 | 3 | 1+3 | 2+3 | 1+2+3
 **right** | h | i | j | k | l | m | n |
 **left + right** | p | q | r | s | t | u | v |
 **mid + right** | x | y | z | 0 | 1 | 2 | 3 |
-**all three** | 5 | 6 | 7 | 8 | 9 | 0 | / |
+**left + mid + right**  | 5 | 6 | 7 | 8 | 9 | 0 | / |
 
 ### Time
 
