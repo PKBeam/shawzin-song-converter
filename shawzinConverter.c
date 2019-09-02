@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #define MAX_STRING 2048
 #define SCALE_SIZE 12
@@ -155,7 +156,7 @@ int main(int argc, char** argv) {
             // generate converted song string
             out[strlen(out)] = scaleOutput[i];
             out[strlen(out)] = bar;
-            out[strlen(out)] = toBase64((int) time);
+            out[strlen(out)] = toBase64(round(time));
 
             // check if finished reading notes
             // if no more notes, integers are read
