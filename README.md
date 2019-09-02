@@ -82,6 +82,7 @@ Not much testing has been done. There are probably many bugs with the converter.
 Currently the converter does not check the length of the song.
 The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
 The recording must also contain at least 6 notes.
+The entire song string must not exceed 370 characters.
 
 ## More on the ingame song string format
 
