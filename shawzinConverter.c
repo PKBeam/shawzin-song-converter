@@ -140,8 +140,8 @@ int main(int argc, char** argv) {
 
             // find comments
             if (note[0] == '#') {
-                // discard the rest of the line
-                while (fgetc(fp) != '\n');
+                // discard the rest of the line, check for EOF
+                while (fgetc(fp) != '\n' && !feof(fp));
                 break;
             }
 
