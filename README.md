@@ -20,7 +20,7 @@ gcc shawzinConverter.c -o shawzinConverter
 ### Formatting the output file
 Use `-f` to format the output to be more human readable.
 ```
-> shawzinConverter mySong.txt -f
+shawzinConverter mySong.txt -f
 ```
 ## Input
 The input file is expected to follow a specific format.
