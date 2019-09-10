@@ -6,16 +6,16 @@ The converter outputs a song string for use ingame.
 ### Windows
 Download the executable from the [releases section](https://github.com/PKBeam/shawzin-song-converter/releases) (or compile it yourself).
 
-In a cmd prompt, navigate to the directory with the executable and type
+In a cmd prompt, navigate to the directory with the executable and run it with
 ```
-> shawzinConverter mySong.txt
+shawzinConverter mySong.txt
 ```
 (If using PowerShell you will need to type `.\shawzinConverter mySong.txt` instead)
 ### macOS/Linux
 Download the source code and compile it.
 ```
-$ gcc shawzinConverter.c -o shawzinConverter
-$ ./shawzinConverter mySong.txt
+gcc shawzinConverter.c -o shawzinConverter
+./shawzinConverter mySong.txt
 ```
 ### Formatting the output file
 Use `-f` to format the output to be more human readable.
@@ -49,7 +49,7 @@ Each line after the second should be in the format `<note> <note> ... <duration>
 
 ### Comments
 
-You can comment out a line with a `#` and it will be ignored by the converter (for lines after the second).
+You can comment out a line with a `#` and it will be ignored by the converter (this only works *after the second line*).
 ```
 5
 120
@@ -77,12 +77,15 @@ Express the duration as a fraction of a beat, using either an integer or a fract
 For example, `1/4`, `2/3` and `1` are all valid inputs.
 
 ## Issues
-Not much testing has been done. There are probably many bugs with the converter.
+Not much testing has been done. There are probably some bugs with the converter. (Please feel free to open an issue if you find one!)
 
 Currently the converter does not check the length of the song.
-The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
-The recording must also contain at least 6 notes.
-The entire song string must not exceed 370 characters.
+* The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
+* The recording must also contain at least 6 notes.
+* The game will not let you input a song string exceeding 370 characters.
+
+The converter does not use the ingame format's chord specification. This may be slightly inefficient with respect to size.
+For example, if the notes 1 and 3 are simultaneously played with no fret (see below table), the converter will represent this as `BAA FAA` instead of just `GAA`.
 
 ## More on the ingame song string format
 
