@@ -71,6 +71,17 @@ D F# A 1/2
 C E G Bb 1/2
 ```
 
+Note that the format no longer supports the simultaneous playing of two or more notes, so chords will be arpeggiated - that is, the notes will be played in ascending order as quickly as possible. The order of input determines the order in which notes are played.
+
+For example, an input of `C E G Bb 1/2` will sound more like
+```
+C 1/64
+E 1/64
+G 1/64
+Bb 29/64
+```
+when played ingame.
+
 ### Duration
 
 Express the duration as a fraction of a beat, using either an integer or a fraction.  
@@ -82,10 +93,10 @@ Not much testing has been done. There are probably some bugs with the converter.
 Currently the converter does not check the length of the song.
 * The duration of an ingame recording must be at least 4 beats (which is 2 seconds at 120 BPM).
 * The recording must also contain at least 6 notes.
-* The game will not let you input a song string exceeding 370 characters.
+(There are most likely other requirements too.)
 
 The converter does not use the ingame format's chord specification. This may be slightly inefficient with respect to size.
-For example, if the notes 1 and 3 are simultaneously played with no fret (see below table), the converter will represent this as `BAA FAA` instead of just `GAA`.
+For example, if the notes 1 and 3 are simultaneously played with no fret (see below table), the converter will represent this as `BAA FAB` instead of just `GAA`.
 
 ## More on the ingame song string format
 
@@ -106,16 +117,16 @@ We then have sequences of three-character strings in the form `<pitch> <time>`.
 
 The first character represents the pitch.
 
-Fret\Notes | 1 | 2 | 1+2 | 3 | 1+3 | 2+3 | 1+2+3
+Fret\String | 1 | 2 | 1+2 | 3 | 1+3 | 2+3 | 1+2+3
 --- | --- | --- | --- | --- | --- | --- | --- |
 **none** | B | C | D | E | F | G | H |
 **left** | J | K | L | M | N | O | P |
-**middle** | R | S | T | U | V | W | X |
-**left + mid** | Z | a | b | c | d | e | f |
+**down** | R | S | T | U | V | W | X |
+**left + down** | Z | a | b | c | d | e | f |
 **right** | h | i | j | k | l | m | n |
 **left + right** | p | q | r | s | t | u | v |
-**mid + right** | x | y | z | 0 | 1 | 2 | 3 |
-**left + mid + right**  | 5 | 6 | 7 | 8 | 9 | 0 | / |
+**down + right** | x | y | z | 0 | 1 | 2 | 3 |
+**left + down + right**  | 5 | 6 | 7 | 8 | 9 | 0 | / |
 
 ### Time
 
@@ -135,4 +146,3 @@ The time of the note is 8 seconds from the `C`, plus (`31/64 * 4`) seconds from 
 ## Miscellaneous notes
 The metronome for recording ingame operates at 120 BPM (or 2 beats per second).  
 The encoding system's limited precision for timing means that most tempos (e.g. 67 BPM) cannot be timed perfectly. (But they'll probably still sound good.)  
-Any two or more notes can be specified to play at the same time. This is not very easy to do using ingame recording, but the converter makes it quite simple.
