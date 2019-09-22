@@ -131,6 +131,7 @@ int main(int argc, char** argv) {
         lineNo++;
 
         // scan in all notes of a chord
+        int counter = 0;
         do {
             // read a note
             if (fscanf(fp, "%s", note) < 1) {
@@ -156,7 +157,8 @@ int main(int argc, char** argv) {
             // generate converted song string
             out[strlen(out)] = scaleOutput[i];
             out[strlen(out)] = bar;
-            out[strlen(out)] = toBase64(round(time));
+            // arpeggiate the chord with the counter
+            out[strlen(out)] = toBase64(round(time) + counter++);
 
             // check if finished reading notes
             // if no more notes, integers are read
